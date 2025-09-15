@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-Module 5-square
-Definates a class square with a private attribute 'size'
+Module 6-square
+Definates a class square with a private attribute 'size' and 'position'
+Methods to compute area and print the square with "#"
 """
 
 
@@ -11,13 +12,21 @@ class Square:
 
     Attributes:
         __size(int): The size of a square
+        __position(tuple): the (x,y) position to offset the square when printed
 
     Methods:
-        __init__(self, size=0): Initializes a Square with a sizea attribute.
+        __init__(self, size=0, position = (0,0): Initializes the Square.
         area(self): Returns the area of a square.
-        my_print: print in outside a square with char #
+        my_print: print in outside a square with char # at defined position.
     """
     def __init__(self, size=0, position=(0, 0)):
+        """
+        Initialize a new square.
+
+        Args:
+            size(int): Size of the sqare. Default is 0.
+            Position(tuple): Position (x, y) of the square(default(0,0))
+        """
         self.size = size
         self.position = position
 
@@ -25,6 +34,9 @@ class Square:
     def size(self):
         """
         Retrieve the size of the square.
+
+        Returns:
+            The current size of the square(int)
         """
         return self.__size
 
@@ -49,6 +61,9 @@ class Square:
     def position(self):
         """
         Retrieve the position
+
+        Returns:
+            A tuple of 2 positive integers
         """
         return self.__position
 
@@ -81,6 +96,10 @@ class Square:
     def my_print(self):
         """
         Prints a square with "#"
+
+        Prints an empty line in vertical position
+        and space in horizental position.
+        If size is 0, prints an empty line.
         """
         if self.__size == 0:
             print("")
