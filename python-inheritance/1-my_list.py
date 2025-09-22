@@ -13,6 +13,12 @@ class MyList(list):
         """
         Prints the list, but sorted in ascending order.
 
+        Args:
+            self: the argument.
+
+        Returns:
+            Nothing
+
         This method does not modify the original list.
         """
         list_sorted = sorted(self)
