@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+1-my_list
+Module that defines the fonction print_sorted
+"""
+
+
 class MyList(list):
     """
     A class hat inherits from list
