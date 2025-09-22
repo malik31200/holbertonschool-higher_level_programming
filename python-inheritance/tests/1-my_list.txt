@@ -7,3 +7,8 @@
 [3, 7, 10]
 >>> another_list
 [10, 3, 7]
+>>> more_numbers = MyList([3, 8, 5, 2])
+>>> more_numbers.print_sorted()
+[2, 3, 5, 8]
+>>> more_numbers
+[3, 8, 5, 2]
