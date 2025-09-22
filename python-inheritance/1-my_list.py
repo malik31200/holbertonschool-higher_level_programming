@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """
 1-my_list
-Module that defines the fonction print_sorted
+Module that defines the class MyList
 """
 
 
 class MyList(list):
     """
-    A class hat inherits from list
+    A class that inherits from list
     """
     def print_sorted(self):
         """
