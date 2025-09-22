@@ -2,3 +2,8 @@
 >>> my_list = MyList([5, 1, 8, 9, 14])
 >>> my_list.print_sorted()
 [1, 5, 8, 9, 14]
+>>> another_list = MyList([10, 3, 7])
+>>> another_list.print_sorted()
+[3, 7, 10]
+>>> another_list
+[10, 3, 7]
