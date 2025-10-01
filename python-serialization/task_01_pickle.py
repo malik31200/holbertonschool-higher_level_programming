@@ -28,5 +28,5 @@ class CustomObject:
             with open(filename, "rb") as f:
                 obj = pickle.load(f)
             return obj
-        except (OSError, pickle.PickleError) as e:
+        except (OSError, EOFError, pickle.UnpicklingError) as e:
             return None
