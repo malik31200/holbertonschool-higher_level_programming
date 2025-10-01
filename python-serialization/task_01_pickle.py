@@ -20,7 +20,7 @@ class CustomObject:
             with open(filename, "wb") as f:
                 pickle.dump(self, f)
         except (OSError, pickle.PickleError) as e:
-            print(f"Error saving object: {e}")
+            return None
 
     @classmethod
     def deserialize(cls, filename):
@@ -29,5 +29,4 @@ class CustomObject:
                 obj = pickle.load(f)
             return obj
         except (OSError, pickle.PickleError) as e:
-            print(f"Error loading object: {e}")
             return None
