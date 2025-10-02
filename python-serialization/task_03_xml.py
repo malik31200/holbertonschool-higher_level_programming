@@ -22,18 +22,5 @@ def deserialize_from_xml(filename):
 
     result = {}
     for child in root:
-        text = child.text
-        if text is None:
-            value = None
-        else:
-            text = text.strip()
-            if text.isdigit():
-                value = int(text)
-            else:
-                try:
-                    value = float(text)
-                except ValueError:
-                    value = text
-        result[child.tag] = value
-
+        result[child.tag] = child.text
     return result
