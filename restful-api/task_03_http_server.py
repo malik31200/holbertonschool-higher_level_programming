@@ -21,7 +21,9 @@ class MyHandler(BaseHTTPRequestHandler):
             self.wfile.write(json_data.encode())
 
         elif self.path == "/info":
-            data = {"version": "1.0", "description": "A simple API built with http.server"}
+            data = {
+                "version": "1.0",
+                "description": "A simple API built with http.server"}
             json_data = json.dumps(data)
             self.send_response(200)
             self.send_header("Content-type", "application/json")
