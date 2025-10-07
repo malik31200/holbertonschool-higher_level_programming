@@ -3,7 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
 
-class MyHandler(BaseHTTPRequestHandler):
+class FirstServer(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
             self.send_response(200)
@@ -30,6 +30,12 @@ class MyHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json_data.encode("utf-8"))
 
+        elif self.path == "/status":
+            self.send_response(200)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            self.wfile.write(b"OK")
+
         else:
             self.send_response(404)
             self.send_header("Content-type", "text/plain")
@@ -40,7 +46,7 @@ class MyHandler(BaseHTTPRequestHandler):
 def run():
     port = 8000
     server_address = ("", port)
-    httpd = HTTPServer(server_address, MyHandler)
+    httpd = HTTPServer(server_address, FirstServer)
     print(f"Serving on port {port}")
     httpd.serve_forever()
 
