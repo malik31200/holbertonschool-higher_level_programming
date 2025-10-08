@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -43,7 +43,7 @@ app.config['JWT_SECRET_KEY'] = 'my_secret_key'
 jwt = JWTManager(app)
 
 
-@app.route('/login', methods=["POST"])
+@app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
     username = data.get("username")
