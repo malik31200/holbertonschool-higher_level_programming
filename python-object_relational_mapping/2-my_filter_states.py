@@ -30,7 +30,7 @@ if __name__ == "__main__":
     # Executing SQL query with format
     cur.execute(
                 "SELECT * FROM states "
-                "WHERE states.name = '{}' "
+                "WHERE BINARY states.name = '{}' "
                 "ORDER BY states.id ASC".format(state_name_searched)
                 )
 
