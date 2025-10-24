@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 lists all states from the database hbtn_0e_0_usa
-Where name start with N
+where name start with N.
 """
 
 import MySQLdb
@@ -27,9 +27,10 @@ if __name__ == "__main__":
 
     # Executing SQL query to retrieve all states
     cur.execute(
-                "SELECT * FROM states"
-                "WHERE name LIKE BINARY 'N%'"
-                "ORDER BY id ASC")
+                "SELECT * FROM states "
+                "WHERE states.name LIKE BINARY 'N%' "
+                "ORDER BY states.id ASC"
+                )
 
     # Displaying results as tuples (id, name)
     for row in cur.fetchall():
