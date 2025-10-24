@@ -1,16 +1,16 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 lists all states from the database hbtn_0e_0_usa
 """
 
 import MySQLdb
-import sys
+from sys import argv
 
 if __name__ == "__main__":
     # retrieve the arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database_name = sys.argv[3]
+    username = argv[1]
+    password = argv[2]
+    database_name = argv[3]
 
     # connect to Mysl database
     connexion = MySQLdb.connect(
