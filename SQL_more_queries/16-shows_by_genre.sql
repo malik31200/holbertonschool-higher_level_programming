@@ -1,4 +1,4 @@
--- lists all shows, and all genres linked to that show
+-- lists all shows, and all genres linked
 SELECT tv_shows.title, tv_genres.name
 FROM tv_shows
 JOIN tv_show_genres
