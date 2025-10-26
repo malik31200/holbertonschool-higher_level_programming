@@ -22,5 +22,6 @@ if __name__ == "__main__":
     first_state = session.query(State).filter_by(id=1).first()
     if first_state:
         print(f"{first_state.id}: {first_state.name}")
-
+    else:
+        print("No state found with id=1")
     session.close()
