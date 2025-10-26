@@ -32,7 +32,8 @@ if __name__ == "__main__":
         (state_name,)
     )
 
-    for row in cur.fetchall():
-        print(row)
+    rows = cur.fetchall()
+    print(", ".join(str(row[0]) for row in rows))
+
     cur.close()
     connexion.close()
