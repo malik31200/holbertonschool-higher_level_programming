@@ -34,51 +34,31 @@ def items():
 
 @app.route('/products')
 def products():
-    source = request.args.get('source', 'json')
-    product_id = request.args.get('id')
+    source = request.args.get('source')
+    id = request.args.get('id')
     items = []
     message = None
 
     if source in ['json', 'csv']:
-        path = os.path.join(app.root_path, 'data', f'products.{source}')
-        try:
-            with open(path, 'r', encoding='utf-8') as f:
-                if source == 'json':
-                    items = json.load(f)
-                else:
-                    reader = csv.DictReader(f)
-                    for row in reader:
-                        row['id'] = int(row['id'])
-                        row['price'] = float(row['price'])
-                        items.append(row)
-        except FileNotFoundError:
-            message = "File not found"
-        except json.JSONDecodeError:
-            message = "Invalid JSON file"
+        filename = f"./data/products.{source}"
+        with open(filename, 'r', encoding="utf-8") as f:
+            if source == 'json':
+                items = json.loads(f.read())
+            else:
+                dictionaries = csv.DictReader(f)
+                for item in dictionaries:
+                    item["id"] = int(item["id"])
+                    item["price"] = float(item["price"])
+                    items.append(item)
+        if id:
+            id = int(id)
+            valid = [item["id"] for item in items]
+            if id not in valid:
+                message = "Product not found"
     else:
         message = "Wrong source"
 
-
-    if product_id and not message:
-        try:
-            product_id = int(product_id)
-            product = None
-            for item in items:
-                if item.get("id") == product_id:
-                    product = item
-                    break
-
-            if product is None:
-                message = "Product not found"
-                items = []
-        except ValueError:
-            message = "Invalid ID"
-            items = []
-
-    return render_template(
-        'product_display.html',
-        items=items,
-        message=message)
+    return render_template('product_display.html', items=items, id=id, message=message)
 
 
 if __name__ == '__main__':
