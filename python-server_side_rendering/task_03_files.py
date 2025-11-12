@@ -35,41 +35,43 @@ def items():
 @app.route('/products')
 def products():
     source = request.args.get('source')
-    product_id = request.args.get('id', type=int)
-    data = []
+    product_id = request.args.get('id')
+    items = []
+    message = None
 
-    if source == "json":
+    if source in ['json', 'csv']:
         path = os.path.join(app.root_path, 'data', 'products.json')
-        with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                if source == 'json':
+                    items = json.load(f)
+                else:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        items.append(row)
+        except FileNotFoundError:
+            message = "File not found"
+        except json.JSONDecodeError:
+            message = "Invalid JSON file"
 
-    elif source == "csv":
-        path = os.path.join(app.root_path, 'data', 'products.csv')
-        with open(path, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                row['id'] = int(row['id'])
-                row['price'] = float(row['price'])
-                data.append(row)
+    if product_id:
+        try:
+            product_id = int(product_id)
+            filtered_items = [
+                item for item in items if int(item["id"]) == product_id]
+            if not filtered_items:
+                message = "Product not found"
+            items = filtered_items
+        except ValueError:
+            message = "Invalid ID"
+
     else:
-        return render_template(
-            'product_display.html',
-            products=[],
-            error="Wrong source")
-
-    # filtrage si id donné
-    if product_id is not None:
-        data = [p for p in data if p['id'] == product_id]
-        if not data:
-            return render_template(
-                'product_display.html',
-                products=[],
-                error="Product not found")
+        message = "Wrong source"
 
     return render_template(
         'product_display.html',
-        products=data,
-        error=None)
+        items=items,
+        message=message)
 
 
 if __name__ == '__main__':
