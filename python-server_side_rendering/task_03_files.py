@@ -69,7 +69,7 @@ def products():
             return render_template(
                 'product_display.html', products=[], error="Product not found")
         data = filtered
-    return render_template('product_display.html', products=data)
+    return render_template('product_display.html', products=data, product_id=product_id)
 
 
 if __name__ == '__main__':
