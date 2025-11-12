@@ -21,25 +21,16 @@
             </thead>
             <tbody>
                 {% for product in products %}
-                    {% if product_id %}
-                        {% if product.id == product_id %}
-                        <tr>
-                            <td>{{ product.name }}</td>
-                            <td>{{ product.category }}</td>
-                            <td>{{ product.price }}</td>
-                        </tr>
-                    {% endif %}
-                {% else %}
                     <tr>
                         <td>{{ product.name }}</td>
                         <td>{{ product.category }}</td>
-                        <td>{{ product.price }}</td> 
+                        <td>{{ product.price }}</td>
                     </tr>
-                {% endif %}
-            {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
         {% endif %}
+        
     {% include 'footer.html'%}
 </body>
 </html>
