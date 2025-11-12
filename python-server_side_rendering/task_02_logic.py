@@ -18,7 +18,7 @@ def contact():
 
 @app.route('/items')
 def items():
-    path_json = os.path.join(app.root_path, 'items.json')
+    path_json = os.path.join(app.root_path, 'data', 'items.json')
     with open(path_json, 'r', encoding="utf-8") as f:
         data = json.load(f)
     item_list = data.get('items', [])
