@@ -6,5 +6,5 @@ An empty class that definites a square.
 
 
 class Square:
-    """Class that represent a empty square(without attributes"""
+    """Class that represent a empty square(without attributes)"""
     pass
