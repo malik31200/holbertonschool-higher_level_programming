@@ -59,14 +59,18 @@ def products():
         message = "Wrong source"
 
 
-    if product_id and items:
+    if product_id and not message:
         try:
             product_id = int(product_id)
-            filtered_items = [
-                item for item in items if int(item["id"]) == product_id]
-            if not filtered_items:
+            product = None
+            for item in items:
+                if item.get("id") == product_id:
+                    product = item
+                    break
+
+            if product is None:
                 message = "Product not found"
-            items = filtered_items
+                items = []
         except ValueError:
             message = "Invalid ID"
             items = []
