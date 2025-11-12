@@ -32,22 +32,6 @@ def items():
     return render_template('items.html', items=item_list)
 
 
-def read_products_json(file_path):
-    with open(file_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-
-def read_products_csv(file_path):
-    products = []
-    with open(file_path, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            row['id'] = int(row['id'])
-            row['price'] = float(row['price'])
-            products.append(row)
-    return products
-
-
 @app.route('/products')
 def products():
     source = request.args.get('source')
@@ -55,21 +39,37 @@ def products():
     data = []
 
     if source == "json":
-        path_json = os.path.join(app.root_path, 'data', 'products.json')
-        data = read_products_json(path_json)
-    elif source == "csv":
-        path_csv = os.path.join(app.root_path, 'data', 'products.csv')
-        data = read_products_csv(path_csv)
-    else:
-        return render_template('product_display.html', products=[], product_id=None, error="Wrong source")
+        path = os.path.join(app.root_path, 'data', 'products.json')
+        with open(path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
 
+    elif source == "csv":
+        path = os.path.join(app.root_path, 'data', 'products.csv')
+        with open(path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                row['id'] = int(row['id'])
+                row['price'] = float(row['price'])
+                data.append(row)
+    else:
+        return render_template(
+            'product_display.html',
+            products=[],
+            error="Wrong source")
+
+    # filtrage si id donné
     if product_id is not None:
-        filtered = [p for p in data if p['id'] == product_id]
-        if not filtered:
+        data = [p for p in data if p['id'] == product_id]
+        if not data:
             return render_template(
-                'product_display.html', products=[], product_id=product_id, error="Product not found")
-        data = filtered
-    return render_template('product_display.html', products=data, product_id=product_id, error=None)
+                'product_display.html',
+                products=[],
+                error="Product not found")
+
+    return render_template(
+        'product_display.html',
+        products=data,
+        error=None)
 
 
 if __name__ == '__main__':
