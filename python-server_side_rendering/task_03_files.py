@@ -52,6 +52,7 @@ def read_products_csv(file_path):
 def products():
     source = request.args.get('source')
     product_id = request.args.get('id', type=int)
+    data = []
 
     if source == "json":
         path_json = os.path.join(app.root_path, 'data', 'products.json')
@@ -60,13 +61,13 @@ def products():
         path_csv = os.path.join(app.root_path, 'data', 'products.csv')
         data = read_products_csv(path_csv)
     else:
-        return render_template('product_display.html', error="Wrong source")
+        return render_template('product_display.html', products=[], error="Wrong source")
 
     if product_id is not None:
         filtered = [p for p in data if p['id'] == product_id]
         if not filtered:
             return render_template(
-                'product_display.html', error="Product not found")
+                'product_display.html', products=[], error="Product not found")
         data = filtered
     return render_template('product_display.html', products=data)
 
