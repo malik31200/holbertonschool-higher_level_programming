@@ -61,15 +61,15 @@ def products():
         path_csv = os.path.join(app.root_path, 'data', 'products.csv')
         data = read_products_csv(path_csv)
     else:
-        return render_template('product_display.html', products=[], error="Wrong source")
+        return render_template('product_display.html', products=[], product_id=None, error="Wrong source")
 
     if product_id is not None:
         filtered = [p for p in data if p['id'] == product_id]
         if not filtered:
             return render_template(
-                'product_display.html', products=[], error="Product not found")
+                'product_display.html', products=[], product_id=product_id, error="Product not found")
         data = filtered
-    return render_template('product_display.html', products=data, product_id=product_id)
+    return render_template('product_display.html', products=data, product_id=product_id, error=None)
 
 
 if __name__ == '__main__':
