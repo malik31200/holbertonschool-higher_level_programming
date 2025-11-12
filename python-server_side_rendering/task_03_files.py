@@ -40,7 +40,7 @@ def products():
     message = None
 
     if source in ['json', 'csv']:
-        path = os.path.join(app.root_path, 'data', 'products.json')
+        path = os.path.join(app.root_path, 'data', f'products.{source}')
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 if source == 'json':
@@ -48,13 +48,18 @@ def products():
                 else:
                     reader = csv.DictReader(f)
                     for row in reader:
+                        row['id'] = int(row['id'])
+                        row['price'] = float(row['price'])
                         items.append(row)
         except FileNotFoundError:
             message = "File not found"
         except json.JSONDecodeError:
             message = "Invalid JSON file"
+    else:
+        message = "Wrong source"
 
-    if product_id:
+
+    if product_id and items:
         try:
             product_id = int(product_id)
             filtered_items = [
@@ -64,9 +69,7 @@ def products():
             items = filtered_items
         except ValueError:
             message = "Invalid ID"
-
-    else:
-        message = "Wrong source"
+            items = []
 
     return render_template(
         'product_display.html',

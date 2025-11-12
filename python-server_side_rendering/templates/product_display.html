@@ -26,10 +26,10 @@
                     {% for item in items %}
                         {% if item.id == id %}
                             <tr>
-                                <td scope="row">{{ product["id"] }}</td>
-                                <td>{{ product["name"] }}</td>
-                                <td>{{ product["category"] }}</td>
-                                <td>{{ product["price"] }}</td>
+                                <td scope="row">{{ item["id"] }}</td>
+                                <td>{{ item["name"] }}</td>
+                                <td>{{ item["category"] }}</td>
+                                <td>{{ item["price"] }}</td>
                             </tr>
                         {% endif %}
                     {% endfor %}
@@ -48,7 +48,7 @@
         <p>No products available.</p>
         {% endif %}
     {% endif %}
-    
+
     {% include 'footer.html'%}
 </body>
 </html>
