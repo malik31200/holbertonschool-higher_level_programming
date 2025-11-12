@@ -25,11 +25,13 @@ def contact():
 @app.route('/items')
 def items():
     path_json = os.path.join(app.root_path, 'data', 'items.json')
-    with open(path_json, 'r', encoding="utf-8") as f:
-        data = json.load(f)
-    item_list = data.get('items', [])
-
-    return render_template('items.html', items=item_list)
+    try:
+        with open(path_json, 'r', encoding="utf-8") as f:
+            data = json.load(f)
+            items = data.get('items', [])
+    except (FileNotFoundError, KeyError):
+        items = []
+    return render_template('items.html', items=items)
 
 
 @app.route('/products')
