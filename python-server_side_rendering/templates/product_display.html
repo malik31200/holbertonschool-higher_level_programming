@@ -14,14 +14,16 @@
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>category</th>
-                    <th>price</th>
+                    <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">category</th>
+                    <th scope="col">price</th>
                 </tr>
             </thead>
             <tbody>
                 {% for product in products %}
                     <tr>
+                        <td scope="row">{{ product.id }}</td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.category }}</td>
                         <td>{{ product.price }}</td>
@@ -30,7 +32,7 @@
             </tbody>
         </table>
         {% endif %}
-        
+
     {% include 'footer.html'%}
 </body>
 </html>
