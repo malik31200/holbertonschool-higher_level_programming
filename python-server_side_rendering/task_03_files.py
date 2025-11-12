@@ -24,7 +24,7 @@ def contact():
 
 @app.route('/items')
 def items():
-    path_json = os.path.join(app.root_path, 'data', 'items.json')
+    path_json = os.path.join(app.root_path, 'items.json')
     try:
         with open(path_json, 'r', encoding="utf-8") as f:
             data = json.load(f)
@@ -42,7 +42,7 @@ def products():
     message = None
 
     if source in ['json', 'csv']:
-        filename = f"./data/products.{source}"
+        filename = f"products.{source}"
         with open(filename, 'r', encoding="utf-8") as f:
             if source == 'json':
                 items = json.loads(f.read())
