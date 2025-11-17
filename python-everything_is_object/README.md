@@ -6,7 +6,7 @@
 </div>
 
 
-##Introduction
+## Introduction
 In Python, **everything  is an object**. This means that all values like numbers, strings, lists and even functions are objects stored in memory. Understanding objects, their types, and how Python handles them is very important for programming, especially for avoiding bugs with variables and functions.
 
 ## id and type
@@ -41,7 +41,7 @@ Here, l1 and l2 point to the same list, so when we add 4 to `l1`,`l2`also change
 `l1 is l2` is true because l1 et l2 point to the same object
 `l1 == l2` is too true because the content is the same
 
-##Immutable Objects
+## Immutable Objects
 Immutable Objects can not be changed after creation. Common examples are **Integers, floats, bool, strings and tuples**.
 If you try to change them, this creates a new object and a new ID.
 
@@ -55,7 +55,9 @@ a += 1
 
 print(b) # 1
 print(a) #2
+
 print("id(a) after:", id(a)) # new ID for a
+
 print(a == b) #False
 print(a is b) #False
 ```
@@ -64,7 +66,7 @@ print(a is b) #False
 `a is b`is false because the two objects differents.
 Even though we increased `a`,`b` stays  the same because integers are immutable. Python created a **new object** for `a`.
 
-##Why it matters?
+## Why it matters?
 Understanding mutable vs immutable is important because Python treats them **differently in memory**.
 - Mutable objects can change without creating a new object.
 - Immutable objects always create a new object if you try to change them.
@@ -81,7 +83,7 @@ i = 10
 i += 1 #creates a new object
 ```
 
-##How arguments are passed to functions
+## How arguments are passed to functions
 Python passes variables by **assignement** (sometimes called pass-by-object-reference).
 - For **mutable objects**, functions can modify the original object.
 - For **immutable objects**, functions can not modify the original object.
