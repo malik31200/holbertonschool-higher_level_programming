@@ -9,7 +9,7 @@
 ## Introduction
 In Python, **everything  is an object**. This means that all values like numbers, strings, lists and even functions are objects stored in memory. Understanding objects, their types, and how Python handles them is very important for programming, especially for avoiding bugs with variables and functions.
 
-## id and type
+## Id and Type
 Python gives each object a **type** and  an **id**. Every object in Python has a unique ID and a type.
 - `type(obj)`shows the type of the object.
 - `id(obj)` shows the memory address of the object.
@@ -34,7 +34,7 @@ print("id(l1) before:", id(l1)
 
 l2 = l1
 l1.append(4)
-print("id(l1) after:", id(l1) #id stays same.
+print("id(l1) after:", id(l1)) #id stays same.
 
 print(l2) #[1, 2, 3, 4]
 print(l1 is l2) #True
@@ -42,8 +42,8 @@ print(l1 == l2) #True
 ```
 
 Here, l1 and l2 point to the same list, so when we add 4 to `l1`,`l2`also changes.
-`l1 is l2` is true because l1 et l2 point to the same object
-`l1 == l2` is too true because the content is the same
+`l1 is l2` is true because l1 et l2 point to the same object.
+`l1 == l2` is too true because the content is the same.
 
 ## Immutable Objects
 Immutable Objects can not be changed after creation. Common examples are **Integers, floats, bool, strings and tuples**.
