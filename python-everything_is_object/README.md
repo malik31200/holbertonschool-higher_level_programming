@@ -30,8 +30,12 @@ Example:
 
 ```python
 l1 = [1, 2, 3]
+print("id(l1) before:", id(l1)
+
 l2 = l1
 l1.append(4)
+print("id(l1) after:", id(l1) #id stays same.
+
 print(l2) #[1, 2, 3, 4]
 print(l1 is l2) #True
 print(l1 == l2) #True
