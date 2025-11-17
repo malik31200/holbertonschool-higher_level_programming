@@ -41,13 +41,13 @@ print(l1 is l2) #True
 print(l1 == l2) #True
 ```
 
-Here, l1 and l2 point to the same list, so when we add 4 to `l1`,`l2`also changes.
-`l1 is l2` is true because l1 et l2 point to the same object.
-`l1 == l2` is too true because the content is the same.
+Here, l1 and l2 point to the same list, so when we add 4 to `l1`,`l2`also changes.  
+`l1 is l2` is true because l1 et l2 point to the same object.  
+`l1 == l2` is too true because the content is the same.  
 
 ## Immutable Objects
-Immutable Objects can not be changed after creation. Common examples are **Integers, floats, bool, strings and tuples**.
-If you try to change them, this creates a new object and a new ID.
+Immutable Objects can not be changed after creation. Common examples are **Integers, floats, bool, strings and tuples**.  
+If you try to change them, this creates a new object and a new ID.  
 
 Example:
 ```python
@@ -66,9 +66,9 @@ print(a == b) #False
 print(a is b) #False
 ```
 
-`a == b`is false because the values are differents.
-`a is b`is false because the two objects differents.
-Even though we increased `a`,`b` stays  the same because integers are immutable. Python created a **new object** for `a`.
+`a == b`is false because the values are differents.  
+`a is b`is false because the two objects differents.  
+Even though we increased `a`,`b` stays  the same because integers are immutable. Python created a **new object** for `a`.  
 
 ## Why it matters?
 Understanding mutable vs immutable is important because Python treats them **differently in memory**.
